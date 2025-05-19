@@ -30,7 +30,7 @@ int main()
     }
     else
     {                                                    // Else part of if statement
-        cout << "You are not eligible to vote." << endl; // Print not eligible to vote
+        cout << "You are not eligible to do any thing." << endl; // Print not eligible to vote
     }
     return 0;
 }

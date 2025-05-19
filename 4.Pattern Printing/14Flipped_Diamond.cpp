@@ -1,39 +1,51 @@
 #include <iostream>
-#include <cstring>
-#include <vector>
 using namespace std;
+
 int main()
 {
-    int i, j, n;
-    cout << "Enter row" << endl;
-    cin >> n;
-    for (i = 0; i < 2*n-1; i++)
-    {
-        for (j = 0; i + j < n - 1; j++)
-        {
-            cout << "* ";
-        }
-        for (j = 0; j < i + 1; j++)
-        {
-            cout << " ";
-        }
-        for (j = n; j > 2*n - 1; j++)
-        {
-            cout << "* ";
-        }
-        cout << endl;
-    }
+    int i = 0, j = 0, n = 5;
+
+    // Top half
     for (i = 0; i < n; i++)
     {
-        for (j = 0; j < i; j++)
+        // Left stars
+        for (j = 0; j < n - i; j++)
         {
-           cout<<"* ";
+            cout << "* ";
         }
-        for (j = 0; j < n-i; j++)
+        // Middle spaces
+        for (j = 0; j < 2 * i + 1; j++)
         {
-           cout<<" ";
+            cout << "  ";
+        }
+        // Right stars
+        for (j = 0; j < n - i; j++)
+        {
+            cout << "* " ;
         }
         cout << endl;
     }
+
+    // Bottom half
+    for (i = n - 2; i >= 0; i--)
+    {
+        // Left stars
+        for (j = 0; j < n - i; j++)
+        {
+            cout << "* ";
+        }
+        // Middle pyramids.
+        for (j = 0; j < 2 * i + 1; j++)
+        {
+            cout << "  ";
+        }
+        // Right stars
+        for (j = 0; j < n - i; j++)
+        {
+            cout << "* ";
+        }
+        cout << endl;
+    }
+
     return 0;
 }
