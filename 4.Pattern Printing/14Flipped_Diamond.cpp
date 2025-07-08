@@ -3,7 +3,7 @@ using namespace std;
 
 int main()
 {
-    int i = 0, j = 0, n = 5;
+    int i = 0, j = 0, n = 3;
 
     // Top half
     for (i = 0; i < n; i++)

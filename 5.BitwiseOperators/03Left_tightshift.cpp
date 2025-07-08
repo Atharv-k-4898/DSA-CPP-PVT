@@ -24,9 +24,9 @@ using namespace std;
 // e.g  0000 0000 0001 -->  0000 0000 0000
 //      0000 0000 1101 -->  0000 0000 1100
 // After doing this no is divided by operator no
-// if 2<<1 then multiply by 2/2 times so 1
-// if 100<<2 then multiply by 100/2^2 times so 25
-// if 8<<3 then 8*2*2*2=128
+// if 2>>1 then multiply by 2/2 times so 1
+// if 100>>2 then multiply by 100/2^2 times so 25
+// if 8>>3 then 8*2*2*2=128
 int main()
 {
     int a = 7;

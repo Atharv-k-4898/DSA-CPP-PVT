@@ -16,7 +16,7 @@ int decimalTobinary1(int n)
 int decimalTobinary2(int n)
 {
     int i = 0;
-    int binaryno=0;
+    int binaryno = 0;
     while (n > 0)
     {
         int bit = (n & 1);
@@ -25,13 +25,15 @@ int decimalTobinary2(int n)
     }
     return binaryno;
 }
-int binaryToDecimal(int n){
-    int decimal=0;
-    int i=0;
-    while(n>0){
-        int bit = n%10;
-        decimal += bit*pow(2,i++);
-        n/=10;
+int binaryToDecimal(int n)
+{
+    int decimal = 0;
+    int i = 0;
+    while (n > 0)
+    {
+        int bit = n % 10;
+        decimal += bit * pow(2, i++);
+        n /= 10;
     }
     return decimal;
 }
@@ -43,6 +45,6 @@ int main()
     // int binary = decimalTobinary2(n);
     // cout << binary << endl;
     int decimal = binaryToDecimal(n);
-    cout<<decimal<<endl;
+    cout << decimal << endl;
     return 0;
 }
