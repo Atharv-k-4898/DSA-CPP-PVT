@@ -39,54 +39,57 @@ using namespace std;
     cout.tie(NULL)
 
 /*
-✦ Question         :
+✦ Question         : Nearby Cars
 ✦ Question Link    :
 ✦ Approach         :
 ✦ Time Complexity  :
 ✦ Space Complexity :
 ✦ Dry Run          :
 */
-void heapify(int i, vector<int> &arr, int n)
+
+class Classcar
 {
-    int left = i * 2 + 1;
-    int right = i * 2 + 2;
-    int maxI = i;
-    if (left < n && arr[left] > arr[maxI])
-        maxI = left;
-    if (right < n && arr[right] > arr[maxI])
-        maxI = right;
-    if (maxI != i)
+public:
+    int idx;
+    int distSq;
+    Classcar(int idx, int distSq)
     {
-        swap(arr[i], arr[maxI]);
-        heapify(maxI, arr, n);
+        this->distSq = distSq;
+        this->idx = idx;
     }
-}
-void heapSort(vector<int> &arr)
+    bool operator<(const Classcar &obj) const
+    {
+        return this->distSq > obj.distSq; // min heap for distSq
+    }
+};
+void nearbyCars(vector<pair<int, int>> pos, int k)
 {
-    int n = arr.size();
-    for (int i = n / 2 - 1; i >= 0; i--)
+    // idx ,dist^2
+    vector<Classcar> Carsarr;
+    for (int i = 0; i < pos.size(); i++)
     {
-        heapify(i, arr, n);
+        int distSq = (pos[i].first * pos[i].first) + (pos[i].second * pos[i].second);
+        Carsarr.push_back(Classcar(i, distSq));
     }
-    // taking elements to their correct position
-    for (int i = n - 1; i >= 0; i--)
+    // Short cut to initialise heap with O(N)
+    priority_queue<Classcar> pq(Carsarr.begin(), Carsarr.end());
+    // but we want min heap so making min heap
+    // done min heap
+    while (k--) // O(k)
     {
-        swap(arr[0], arr[i]);
-        heapify(0, arr, i);
+        cout << " Top :" << pq.top().idx;
+        pq.pop();
     }
 }
 
 int main()
 {
     FASTIO;
-    vector<int> arr = {1, 4, 2, 5, 3};
-    heapSort(arr);
-    cout << "Sorting the Heap" << endl;
-    for (auto i : arr)
-    {
-        cout << i << " ";
-    }
+    vector<pair<int, int>> pos;
+    pos.push_back(make_pair(3, 3));
+    pos.push_back(make_pair(5, -1));
+    pos.push_back(make_pair(-2, 4));
+    int k = 2;
+    nearbyCars(pos, k);
     return 0;
 }
-
-// TC is O(nlogN)

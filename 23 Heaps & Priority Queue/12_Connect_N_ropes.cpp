@@ -38,55 +38,27 @@ using namespace std;
     cin.tie(NULL);                    \
     cout.tie(NULL)
 
-/*
-✦ Question         :
-✦ Question Link    :
-✦ Approach         :
-✦ Time Complexity  :
-✦ Space Complexity :
-✦ Dry Run          :
-*/
-void heapify(int i, vector<int> &arr, int n)
+int connectNRopes(vector<int> ropes)
 {
-    int left = i * 2 + 1;
-    int right = i * 2 + 2;
-    int maxI = i;
-    if (left < n && arr[left] > arr[maxI])
-        maxI = left;
-    if (right < n && arr[right] > arr[maxI])
-        maxI = right;
-    if (maxI != i)
+    priority_queue<int, vector<int>, greater<int>> pq(ropes.begin(), ropes.end()); // O(n)
+    int cost = 0;
+    while (pq.size() > 1)
     {
-        swap(arr[i], arr[maxI]);
-        heapify(maxI, arr, n);
+        int min1 = pq.top();
+        pq.pop();
+        int min2 = pq.top();
+        pq.pop();
+        cost += min1 + min2;
+        pq.push(min1 + min2);
     }
-}
-void heapSort(vector<int> &arr)
-{
-    int n = arr.size();
-    for (int i = n / 2 - 1; i >= 0; i--)
-    {
-        heapify(i, arr, n);
-    }
-    // taking elements to their correct position
-    for (int i = n - 1; i >= 0; i--)
-    {
-        swap(arr[0], arr[i]);
-        heapify(0, arr, i);
-    }
+    return cost;
 }
 
 int main()
 {
     FASTIO;
-    vector<int> arr = {1, 4, 2, 5, 3};
-    heapSort(arr);
-    cout << "Sorting the Heap" << endl;
-    for (auto i : arr)
-    {
-        cout << i << " ";
-    }
-    return 0;
-}
+    vector<int> ropes = {4, 3, 2, 6};
+    cout << " Min Cost is :" << connectNRopes(ropes) << endl;
 
-// TC is O(nlogN)
+    return 0;
+}                                   
